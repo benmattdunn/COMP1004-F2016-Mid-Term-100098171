@@ -1,4 +1,16 @@
-﻿namespace COMP1004_F2016_Mid_Term_100098171
+﻿/// <summary>
+/// 
+/// <summary>
+/// DND character generator
+/// Tom T. & Ben Dunn
+/// Created 2016, oct 20
+/// 
+/// bout box for the program.
+/// </summary>
+/// </summary>
+
+
+namespace COMP1004_F2016_Mid_Term_100098171
 {
     partial class AboutBox
     {

@@ -6,6 +6,16 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+/// <summary>
+/// 
+/// <summary>
+/// DND character generator
+/// Tom T. & Ben Dunn
+/// Created 2016, oct 20
+/// 
+/// about box for the program
+/// </summary>
+/// </summary>
 
 namespace COMP1004_F2016_Mid_Term_100098171
 {

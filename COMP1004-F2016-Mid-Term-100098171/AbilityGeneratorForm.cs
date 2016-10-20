@@ -10,20 +10,38 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using FontAwesome.Sharp;
 
+
+/// <summary>
+/// 
+/// <summary>
+/// DND character generator
+/// Tom T. & Ben Dunn
+/// Created 2016, oct 20
+/// 
+/// Creates a form that allows a user to generate abilites
+/// </summary>
+/// </summary>
+
 namespace COMP1004_F2016_Mid_Term_100098171
 {
     public partial class AbilityGeneratorForm : Form
     {
         // private Instance Object
         private Random _random;
+        public GenerateNameForm previousForm; 
 
-
-
+        /// <summary>
+        /// starts every thing up
+        /// </summary>
         public AbilityGeneratorForm()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// roll function for generating abilites
+        /// </summary>
+        /// <returns></returns>
         private Int32 Roll()
         {
             // create new empty list
@@ -53,6 +71,9 @@ namespace COMP1004_F2016_Mid_Term_100098171
             return result;
         }
 
+        /// <summary>
+        /// attaches rolls to text boxews
+        /// </summary>
         private void GenerateAbilities()
         {
             StrengthTextBox.Text = this.Roll().ToString();
@@ -63,12 +84,22 @@ namespace COMP1004_F2016_Mid_Term_100098171
             CharismaTextBox.Text = this.Roll().ToString();
         }
 
-
+        /// <summary>
+        /// calls the random ability generate upon button select
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void GenerateButton_Click(object sender, EventArgs e)
         {
             GenerateAbilities();
         }
 
+
+        /// <summary>
+        /// calls the generate abilies upon load
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void GeneratorForm_Load(object sender, EventArgs e)
         {
             this._random = new Random(); // initialize random number object
@@ -77,7 +108,11 @@ namespace COMP1004_F2016_Mid_Term_100098171
 
         }
 
-
+        /// <summary>
+        /// moves the values of the character into the memmorry
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void NextButton_Click(object sender, EventArgs e)
         {
             Character character = Program.character;
@@ -95,6 +130,7 @@ namespace COMP1004_F2016_Mid_Term_100098171
             // Step 2 - Instantiate an object for the form type
             // you are going to next
             RaceAndClassForm raceAndClassForm = new RaceAndClassForm();
+            
 
             // Step 3 - create a property in the next form that 
             // we will use to point to this form
@@ -106,6 +142,152 @@ namespace COMP1004_F2016_Mid_Term_100098171
 
             // Step 5 - Show the next form
             raceAndClassForm.Show();
+        }
+
+        /// <summary>
+        /// calls the back button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BackButton_Click(object sender, EventArgs e)
+        {
+            previousForm.Show();
+            this.Close();
+
+        }
+        /// <summary>
+        /// Calls the switch function and switches the selected items. 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SwitchButton_Click(object sender, EventArgs e)
+        {
+            string firstSwitch = switchAbilitesFirst();
+            string secondSwitch = switchAbilitesSecond();
+
+            //MessageBox.Show(firstSwitch + secondSwitch);
+
+            if (!firstSwitch.Equals("null") || !secondSwitch.Equals("null"))
+            {
+                if (this.SwitchFromBox.SelectedIndex == 0)
+                {
+                    this.StrengthTextBox.Text = secondSwitch;
+                }
+                else if (this.SwitchFromBox.SelectedIndex == 1)
+                {
+                    this.DexterityTextBox.Text = secondSwitch;
+                }
+                else if (this.SwitchFromBox.SelectedIndex == 2)
+                {
+                    this.ConstitutionTextBox.Text = secondSwitch;
+                }
+                else if (this.SwitchFromBox.SelectedIndex == 3)
+                {
+                    this.IntelligenceTextBox.Text = secondSwitch;
+                }
+                else if (this.SwitchFromBox.SelectedIndex == 4)
+                {
+                    this.WisdomTextBox.Text = secondSwitch;
+                }
+                else if (this.SwitchFromBox.SelectedIndex == 5)
+                {
+                    this.IntelligenceTextBox.Text = secondSwitch;
+                }
+
+                if (this.SwitchTwoBox.SelectedIndex == 0)
+                {
+                    this.StrengthTextBox.Text = firstSwitch;
+                }
+                else if (this.SwitchTwoBox.SelectedIndex == 1)
+                {
+                    this.DexterityTextBox.Text = firstSwitch;
+                }
+                else if (this.SwitchTwoBox.SelectedIndex == 2)
+                {
+                    this.ConstitutionTextBox.Text = firstSwitch;
+                }
+                else if (this.SwitchTwoBox.SelectedIndex == 3)
+                {
+                    this.IntelligenceTextBox.Text = firstSwitch;
+                }
+                else if (this.SwitchTwoBox.SelectedIndex == 4)
+                {
+                    this.WisdomTextBox.Text = firstSwitch;
+                }
+                else if (this.SwitchTwoBox.SelectedIndex == 5)
+                {
+                    this.IntelligenceTextBox.Text = firstSwitch;
+                }
+
+            }
+        }
+
+        /// <summary>
+        /// switches the abilities arround, first step
+        /// </summary>
+        private string switchAbilitesFirst ()
+        {
+            string switchFrom = "null";
+            
+            if (this.SwitchFromBox.SelectedIndex == 0)
+            {
+                switchFrom = this.StrengthTextBox.Text;
+            } else if (this.SwitchFromBox.SelectedIndex == 1)
+            {
+                switchFrom = this.DexterityTextBox.Text;
+            }
+            else if (this.SwitchFromBox.SelectedIndex == 2)
+            {
+                switchFrom = this.ConstitutionTextBox.Text;
+            }
+            else if (this.SwitchFromBox.SelectedIndex == 3)
+            {
+                switchFrom = this.IntelligenceTextBox.Text;
+            }
+            else if (this.SwitchFromBox.SelectedIndex == 4)
+            {
+                switchFrom = this.WisdomTextBox.Text;
+            } else if(this.SwitchFromBox.SelectedIndex == 5)
+            {
+                switchFrom = this.IntelligenceTextBox.Text;
+            }
+            return switchFrom;
+        }
+
+        /// <summary>
+        /// switches the abilities arround, first step
+        /// </summary>
+        private string switchAbilitesSecond()
+        {
+            string switchFrom = "null";
+
+            if (this.SwitchTwoBox.SelectedIndex == 0)
+            {
+                switchFrom = this.StrengthTextBox.Text;
+            }
+            else if (this.SwitchTwoBox.SelectedIndex == 1)
+            {
+                switchFrom = this.DexterityTextBox.Text;
+            }
+            else if (this.SwitchTwoBox.SelectedIndex == 2)
+            {
+                switchFrom = this.ConstitutionTextBox.Text;
+            }
+            else if (this.SwitchTwoBox.SelectedIndex == 3)
+            {
+                switchFrom = this.IntelligenceTextBox.Text;
+            }
+            else if (this.SwitchTwoBox.SelectedIndex == 4)
+            {
+                switchFrom = this.WisdomTextBox.Text;
+            }
+            else if (this.SwitchTwoBox.SelectedIndex == 5)
+            {
+                switchFrom = this.IntelligenceTextBox.Text;
+            }
+
+            return switchFrom;
+
         }
     }
 }

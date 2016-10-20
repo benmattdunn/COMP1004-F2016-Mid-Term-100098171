@@ -16,10 +16,11 @@ namespace COMP1004_F2016_Mid_Term_100098171
         [STAThread]
         static void Main()
         {
-
+            Character charactersheet = new Character();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new AbilityGeneratorForm());
+            Application.Run(new SplashForm());
+            //Application.Run(new AbilityGeneratorForm());
         }
     }
 }
